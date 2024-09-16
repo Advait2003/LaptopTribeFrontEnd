@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebook,
+  faDiscord ,
   faTwitter,
   faInstagram,
   faLinkedin,
@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-gray-900 dark:bg-gray-800 text-white py-8">
-      <div className="container mx-auto px-4">
+      <div className="container justify-center mx-auto px-4">
         {/* Links Section */}
         <div className="flex justify-center mb-4 space-x-8">
           <a href="/about-us" className="hover:text-gray-400">
@@ -29,13 +29,7 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-6 mb-4">
-          <a href="https://facebook.com" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon
-              icon={faFacebook}
-              className="hover:text-gray-400"
-              size="lg"
-            />
-          </a>
+          
           <a href="https://twitter.com" target="_blank" rel="noreferrer">
             <FontAwesomeIcon
               icon={faTwitter}
@@ -50,13 +44,14 @@ const Footer = () => {
               size="lg"
             />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon
-              icon={faLinkedin}
-              className="hover:text-gray-400"
-              size="lg"
-            />
-          </a>
+          
+          <a href="https://discord.com" target="_blank" rel="noreferrer">
+        <FontAwesomeIcon
+          icon={faDiscord}
+          className="hover:text-gray-400"
+          size="lg"
+        />
+      </a>
         </div>
 
         {/* Copyright Section */}

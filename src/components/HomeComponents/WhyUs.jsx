@@ -1,5 +1,6 @@
 import React from "react";
 import wideSelectLogo from "../../assets/SVGs/laptop-alt-2-svgrepo-com.svg";
+import UnbiasedReviews from "../../assets/SVGs/review-screen-svgrepo-com.svg"
 const Whyus = () => {
   return (
     <section className="bg-gray-900 text-white py-16">
@@ -20,7 +21,7 @@ const Whyus = () => {
               style={{ width: "90px", height: "64px" }}
             >
               <img
-                src={wideSelectLogo}
+                src={UnbiasedReviews}
                 alt="LaptopTribeLogo"
                 className="h-12 w-12"
               />
