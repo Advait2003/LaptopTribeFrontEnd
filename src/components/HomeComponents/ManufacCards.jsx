@@ -40,7 +40,7 @@ const ManufacturersSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {visibleManufacturers.map((manufacturer, index) => (
             <Link
-              to={`/${manufacturer.name.toLowerCase()}`} // Dynamic link to manufacturer's page
+              to={`../ManufactuterWebPages/${manufacturer.name.toLowerCase()}`} // Dynamic link to manufacturer's page
               key={index}
             >
               <div
