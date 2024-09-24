@@ -51,7 +51,7 @@ const ManufacturersSection = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out transform hover:scale-110"
                   style={{
-                    backgroundImage: `url(src/assets/ManufacImages/${manufacturer.name.toLowerCase()}.png)`,
+                    backgroundImage: `src/assets/ManufacImages/url(${manufacturer.name.toLowerCase()}.png)`,
                   }}
                 ></div>
 
