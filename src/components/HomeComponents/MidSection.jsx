@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 
-const LatestReviews = () => {
+const MidSection = () => {
   const [reviews, setReviews] = useState([]);
 
   return (
-    <section className="bg-gray-900 text-white py-8 text-left">
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-left mb-12">Latest Reviews</h2>
+    <section className="bg-gray-900 text-white py-4 text-left">
+      <div className="container mx-4 px-2">
+        <h2 className="text-3xl font-bold text-left mb-12">Latest Reviews</h2>
         <div className="space-y-8">
           {reviews.map(review => (
             <div key={review._id} className="bg-gray-800 rounded-lg p-6 mb-4">
@@ -27,4 +27,4 @@ const LatestReviews = () => {
   );
 };
 
-export default LatestReviews;
+export default MidSection;
