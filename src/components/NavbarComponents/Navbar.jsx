@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-// w// Adjust the path to your actual logo image
 import { Link } from "react-router-dom";
-// import ReviewPage from './ReviewPage/ReviewPage';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,7 +59,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/contact"
+              to="/discord"
               className="block px-4 py-2 mt-2 text-white md:mt-0 rounded-sm transition duration-300 bg-gray-700 hover:bg-gray-600"
             >
               Discord
@@ -77,21 +75,7 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-
-        {/* <div className="hidden md:flex space-x-2 items-center ml-2">
-  
-          <a
-            href="/"
-            className="px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-500 transition duration-300"
-          >
-            Login/Sign Up
-          </a>
-        </div> */}
       </div>
-
-      {/* Call to Action (CTA) */}
-
-      {/* Collapsible menu for smaller screens */}
     </nav>
   );
 };

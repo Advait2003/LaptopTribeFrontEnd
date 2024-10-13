@@ -3,7 +3,7 @@ import React from 'react';
 
 const AdSidebar = () => {
   return (
-    <div className="w-64 bg-gray-200 p-4 rounded-lg shadow-md h-full">
+    <div className="w-60 bg-gray-200 p-4 rounded-lg shadow-md h-full">
       <h2 className="text-lg font-bold mb-4">Sponsored Ads</h2>
       <div className="mb-4">
         <img

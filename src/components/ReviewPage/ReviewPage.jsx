@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../NavbarComponents/Navbar";
 
 const LaptopForm = () => {
   const [laptop, setLaptop] = useState({
@@ -8,6 +7,9 @@ const LaptopForm = () => {
     ram: "",
     storage: "",
     processor: "",
+    yearOfPurchase: "",
+    countryOfPurchase:"",
+    approxPrice: ""
   });
 
   const handleChange = (e) => {
@@ -40,7 +42,9 @@ const LaptopForm = () => {
           onSubmit={handleSubmit}
           className="bg-white shadow-md rounded-lg p-2"
         >
-          <h2 className="text-2xl font-semibold mb-4 text-center">Add a New Laptop</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center">
+            Tell Us about your Laptop!
+          </h2>
 
           <div className="mb-4">
             <label
@@ -131,7 +135,59 @@ const LaptopForm = () => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="storage"
+            >
+              Year of purchase:
+            </label>
+            <input
+              type="text"
+              name="storage"
+              value={laptop.yearOfPurchase}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter your Year of Purchase"
+              required
+            />
+          </div>
 
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="ram"
+            >
+              Country Of Purchase
+            </label>
+            <input
+              type="text"
+              name="yearOfPurchase"
+              value={laptop.yearOfPurchase}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter Year of Purchase"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="yearOfPurchase"
+            >
+              Approximate price of your Laptop
+            </label>
+            <input
+              type="text"
+              name="ram"
+              value={laptop.approxPrice}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter Year of Purchase"
+              required
+            />
+          </div>
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"

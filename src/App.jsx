@@ -4,6 +4,7 @@ import LaptopManufacturers from './components/LaptopManufacturers';
 import LaptopModels from './components/LaptopModels';
 import ReviewPage from '../src/components/ReviewPage/ReviewPage';
 import Layout from './components/Layout';
+import DiscordPage from './components/discordPage/discordPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/LaptopManufacturers" element={<LaptopManufacturers />} />
         <Route path="/LaptopModels" element={<LaptopModels />} />
+        <Route path="/discord" element={<DiscordPage />} /> 
       </Routes>
       </Layout>
       
