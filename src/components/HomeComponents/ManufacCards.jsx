@@ -32,7 +32,7 @@ const ManufacturersSection = () => {
       return b.modelsReviewed - a.modelsReviewed; // Sort by models reviewed (high to low)
     } else if (sortCriterion === "popularity") {
       // If you have a popularity field, replace the following with the correct property
-      return b.modelsReviewed - a.modelsReviewed; // Adjust this based on your data
+      return b.popularity - a.popularity; // Adjust this based on your data
     }
     return 0; // Default case
   });
@@ -55,6 +55,7 @@ const ManufacturersSection = () => {
             onChange={(e) => setSortCriterion(e.target.value)}
             className="bg-gray-600 text-white rounded-md p-2"
           >
+            
             <option value="rating">Sort by Overall Rating</option>
             <option value="modelsReviewed">Sort by Models Reviewed</option>
             <option value="popularity">Sort by Popularity</option>

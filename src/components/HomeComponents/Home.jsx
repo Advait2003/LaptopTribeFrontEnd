@@ -2,7 +2,8 @@ import React from "react";
 // import Navbar from "../NavbarComponents/Navbar";
 import ManufacturersSection from "./ManufacCards";
 // import Footer from "../FooterComponents/Footer";
-import MidSection from "./MidSection";
+// import MidSection from "./MidSection";
+import LatestReviews from "./LatestReviews";
 const Home = () => {
   return (
     <div className="bg-gray-700 min-h-screen">
@@ -16,9 +17,8 @@ const Home = () => {
           </p>
         </div>
       </section>
-      {/* <MidSection /> */}
+      <LatestReviews/>
       <ManufacturersSection />
-      {/* <Footer /> */}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 // Layout.jsx
-import React from 'react';
-import Navbar from '../components/NavbarComponents/Navbar';
-import Footer from './FooterComponents/Footer';
-import AdSpace from './AdSidebar/AdSidebarComponent';
+import React from "react";
+import Navbar from "../components/NavbarComponents/Navbar";
+import Footer from "./FooterComponents/Footer";
+import AdSpace from "./AdSidebar/AdSidebarComponent";
 
 const Layout = ({ children }) => {
   return (
@@ -10,12 +10,9 @@ const Layout = ({ children }) => {
       <Navbar />
       <div className="flex flex-grow">
         {/* Main content */}
-        <main className="flex-grow p-4">
-          {children}
-        </main>
-
+        <main className="flex-grow p-4">{children}</main>
         {/* Ad Sidebar */}
-        <aside className="w-64 bg-gray-200 p-4 hidden md:block">
+        <aside className="w-64 bg-gray-100 p-4 hidden md:block">
           <AdSpace />
         </aside>
       </div>
