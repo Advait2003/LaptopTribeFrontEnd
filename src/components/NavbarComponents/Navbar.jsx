@@ -9,15 +9,15 @@ const Navbar = () => {
 
   return (
     <nav className="bg-black shadow-md">
-      <div className="container mx-auto flex justify-between items-center py-4">
+      <div className="container mx-auto flex justify-between items-center py-1">
         {/* Logo and text aligned and clickable */}
-        <a href="/" className="flex items-center space-x-4 ml-4">
+        <a href="/" className="flex items-center space-x-2 ml-4">
           <img
             src="http://localhost:5000/SVGs/logo.svg"
             alt="LaptopTribeLogo"
             className="h-12 w-12"
           />
-          <span className="text-3xl font-bold text-white">LaptopTribe</span>
+          <span className="text-3xl text-white">LaptopTribe</span>
         </a>
 
         {/* Hamburger menu icon for mobile */}
@@ -50,9 +50,18 @@ const Navbar = () => {
           } md:space-x-2 md:items-center`} // Reduce space between buttons
         >
           <li>
+          <Link
+              to="/LaptopManufacturers"
+              className="px-3 py-2 mt-2 text-white text-lg md:mt-0 transition duration-300 hover:text-gray-400 hover:underline"
+
+            >
+              Laptop Brands
+            </Link>
+          </li>
+          <li>
             <Link
               to="/review"
-              className="block px-3 py-2 mt-2 text-white md:mt-0 rounded-sm transition duration-300 bg-gray-700 hover:bg-gray-600"
+              className="px-3 py-2 mt-2 text-white text-lg md:mt-0 transition duration-300 hover:text-gray-400 hover:underline"
             >
               Share Your Review
             </Link>
@@ -60,7 +69,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/discord"
-              className="block px-4 py-2 mt-2 text-white md:mt-0 rounded-sm transition duration-300 bg-gray-700 hover:bg-gray-600"
+              className="px-3 py-2 mt-2 text-white text-lg md:mt-0 transition duration-300 hover:text-gray-400 hover:underline"
             >
               Discord
             </Link>

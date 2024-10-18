@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const DiscordPage = () => {
   return (
     <div className="bg-gray-800 min-h-screen flex flex-col items-center justify-center text-center p-6">
-      <h1 className="text-5xl font-bold text-white mb-4">
+      <h1 className="text-5xl text-white mb-4">
         Join Our Laptop Community!
       </h1>
       <p className="text-xl text-gray-300 mb-8">
