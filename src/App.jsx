@@ -1,0 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/HomeComponents/Home';
+import LaptopManufacturers from './components/ManufactuterWebPages/LaptopManufacturers';
+import LaptopModels from './components/LaptopModels';
+import ReviewPage from '../src/components/ReviewPage/ReviewPage';
+import Layout from './components/Layout';
+import DiscordPage from './components/discordPage/discordPage';
+
+function App() {
+  return (
+    <Router>
+      <Layout>
+      <Routes>        
+        <Route path="/" element={<Home />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/LaptopManufacturers" element={<LaptopManufacturers />} />
+        <Route path="/LaptopModels" element={<LaptopModels />} />
+        <Route path="/discord" element={<DiscordPage />} /> 
+      </Routes>
+      </Layout>
+      
+    </Router>
+  );
+}
+
+export default App;
