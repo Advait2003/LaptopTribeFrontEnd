@@ -23,19 +23,19 @@ const LatestLaptops = () => {
     fetchLaptops();
   }, []);
 
-  // Auto slide
+  // Auto slide (only depend on laptops.length for stability)
   useEffect(() => {
     if (laptops.length > 0) {
       startAutoSlide();
       return () => stopAutoSlide();
     }
-  }, [current, laptops.length]);
+  }, [laptops.length]);
 
   const startAutoSlide = () => {
     stopAutoSlide();
     intervalRef.current = setInterval(() => {
       goToNext();
-    }, 3000);
+    }, 6000);
   };
 
   const stopAutoSlide = () => {
@@ -46,13 +46,11 @@ const LatestLaptops = () => {
   const goToPrev = () => {
     setIsTransitioning(true);
     setCurrent((prev) => prev - 1);
-    startAutoSlide();
   };
 
   const goToNext = () => {
     setIsTransitioning(true);
     setCurrent((prev) => prev + 1);
-    startAutoSlide();
   };
 
   // Prepare slides with clones
@@ -75,21 +73,21 @@ const LatestLaptops = () => {
   if (laptops.length === 0) {
     return (
       <section className="bg-gray-800 py-5 relative w-full">
-        <div className="container mx-auto px-0 sm:px-12">
+        <div className="container mx-auto px-0 sm:px-12"> 
           <h2 className="text-3xl text-white">Latest Laptops</h2>
           <div className="text-white text-center py-10">Loading...</div>
         </div>
       </section>
     );
   }
-  // console.log(laptop.processor);
+
   return (
-    <section className="bg-gray-800 py-5 relative w-full">
-      <div className="container mx-auto px-0 sm:px-12">
-        <div className="flex justify-between items-center mb-12 px-4 sm:px-12">
+    <section className="bg-gray-800 py-5 relative w-full text-left">
+      <div className="container px-10">
+        <div className="flex justify-between items-center mb-12 px-0">
           <h2 className="text-3xl text-white">Latest Laptops</h2>
         </div>
-        <div className="relative flex items-center justify-center w-full">
+        <div className="relative flex items-center w-full">
           <button
             onClick={goToPrev}
             className="absolute left-0 top-1/2 z-10 bg-gray-700 hover:bg-gray-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg -translate-y-1/2"
@@ -109,7 +107,7 @@ const LatestLaptops = () => {
                 width: `${slides.length * 100}%`,
                 transform: `translateX(-${current * (100 / slides.length)}%)`,
                 transition: isTransitioning
-                  ? "transform 0.7s ease-in-out"
+                  ? "transform 1s ease-in-out"
                   : "none",
               }}
               onTransitionEnd={handleTransitionEnd}
@@ -117,15 +115,15 @@ const LatestLaptops = () => {
               {slides.map((laptop, idx) => (
                 <div
                   key={`${laptop._id || "slide"}-${idx}`}
-                  className="flex-shrink-0 w-full flex justify-center items-center"
+                  className="flex-shrink-0 w-full flex items-start"
                   style={{ width: `${100 / slides.length}%` }}
                 >
-                  <div className="bg-gray-700 rounded-sm shadow-md w-full mx-0 overflow-hidden border border-white p-4 flex flex-col max-w-full transition-all duration-500">
-                    <div className="flex flex-col items-center mb-4">
+                  <div className="bg-gray-700 rounded-none shadow-md w-full mx-0 overflow-hidden border border-white p-4 flex flex-col max-w-full transition-all duration-500 text-left">
+                    <div className="flex flex-col items-start mb-4">
                       <img
                         src={
                           laptop.images && laptop.images.length > 0
-                            ? laptop.images[0].url
+                            ? `http://localhost:5000${laptop.images[0].url}`
                             : "/default-laptop.png"
                         }
                         alt={
@@ -135,7 +133,7 @@ const LatestLaptops = () => {
                         }
                         className="object-cover h-24 w-24 mb-2"
                       />
-                      <h3 className="text-2xl text-white text-center font-bold">
+                      <h3 className="text-2xl text-white font-bold">
                         <Link
                           to={`/laptops/${laptop.slug}`}
                           className="hover:underline"
@@ -143,7 +141,7 @@ const LatestLaptops = () => {
                           {laptop.fullName}
                         </Link>
                       </h3>
-                      <div className="text-white text-center">
+                      <div className="text-white">
                         {laptop.manufacturerName}
                       </div>
                     </div>
@@ -160,7 +158,6 @@ const LatestLaptops = () => {
                         ? new Date(laptop.releaseDate).getFullYear()
                         : "N/A"}
                     </div>
-
                     <div className="text-white mb-2">
                       <span className="font-semibold">Processor:</span>{" "}
                       {laptop.processor &&
@@ -190,8 +187,7 @@ const LatestLaptops = () => {
                               f.toLowerCase().includes("ssd")
                           ) || "N/A"}
                     </div>
-
-                    <div className="text-center mt-4">
+                    <div className="mt-4">
                       <Link
                         to={`/laptops/${laptop.slug}`}
                         className="bg-blue-500 text-white text-lg font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition-colors inline-block"
