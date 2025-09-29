@@ -71,7 +71,7 @@ const LatestReviews = () => {
 
   return (
     <section className="bg-gray-600 py-4">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-10">
         <h2 className="text-3xl text-white text-left mb-4">Latest Reviews</h2>
 
         <div className="relative flex items-center">

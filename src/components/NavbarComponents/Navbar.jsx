@@ -75,10 +75,10 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            {/* Reduced space-x and ml */}
             <a
               href="/"
-              className="px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-500 transition duration-300"
+              className="px-4 py-2 mr-2 text-lg font-semibold rounded-md border border-blue-600 text-blue-600 hover:bg-blue-100 inline-block"
+
             >
               Login/Sign Up
             </a>

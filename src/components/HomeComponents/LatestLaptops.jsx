@@ -1,21 +1,79 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import LaptopCard from "../LaptopCards/LaptopCard";
+
+const dummyLaptops = [
+  {
+    _id: "dummy1",
+    fullName: "Dummy Laptop 1",
+    model: "DL-100",
+    manufacturerName: "DummyBrand",
+    display: { size: 15.6, technology: "IPS", refreshRate: 60, brightness: 300 },
+    processor: { model: "Dummy CPU", cores: 4, threads: 8, baseSpeed: 2.0, maxSpeed: 3.5 },
+    graphics: { integrated: { model: "Dummy GPU" } },
+    dimensions: { weight: 1.5 },
+    affiliatedLink: "#",
+    reviewScore: 8.2,
+    images: [{ url: "/default-laptop.png", alt: "Dummy Laptop 1" }],
+    slug: "dummy-laptop-1",
+    thirdPartyReviews: ["https://youtube.com/dummyreview1"]
+  },
+  {
+    _id: "dummy2",
+    fullName: "Dummy Laptop 2",
+    model: "DL-200",
+    manufacturerName: "DummyBrand",
+    display: { size: 14, technology: "OLED", refreshRate: 120, brightness: 400 },
+    processor: { model: "Dummy CPU 2", cores: 6, threads: 12, baseSpeed: 2.5, maxSpeed: 4.0 },
+    graphics: { dedicated: { model: "Dummy GPU 2" } },
+    dimensions: { weight: 1.2 },
+    affiliatedLink: "#",
+    reviewScore: 9.0,
+    images: [{ url: "/default-laptop.png", alt: "Dummy Laptop 2" }],
+    slug: "dummy-laptop-2",
+    thirdPartyReviews: ["https://youtube.com/dummyreview2"]
+  },
+  {
+    _id: "dummy3",
+    fullName: "Dummy Laptop 3",
+    model: "DL-300",
+    manufacturerName: "DummyBrand",
+    display: { size: 13.3, technology: "TN", refreshRate: 60, brightness: 250 },
+    processor: { model: "Dummy CPU 3", cores: 2, threads: 4, baseSpeed: 1.8, maxSpeed: 2.8 },
+    graphics: { integrated: { model: "Dummy GPU 3" } },
+    dimensions: { weight: 1.1 },
+    affiliatedLink: "#",
+    reviewScore: 7.5,
+    images: [{ url: "/default-laptop.png", alt: "Dummy Laptop 3" }],
+    slug: "dummy-laptop-3",
+    thirdPartyReviews: []
+  },
+  {
+    _id: "dummy4",
+    fullName: "Dummy Laptop 4",
+    model: "DL-400",
+    manufacturerName: "DummyBrand",
+    display: { size: 17, technology: "IPS", refreshRate: 144, brightness: 350 },
+    processor: { model: "Dummy CPU 4", cores: 8, threads: 16, baseSpeed: 3.0, maxSpeed: 4.5 },
+    graphics: { dedicated: { model: "Dummy GPU 4" } },
+    dimensions: { weight: 2.2 },
+    affiliatedLink: "#",
+    reviewScore: 8.8,
+    images: [{ url: "/default-laptop.png", alt: "Dummy Laptop 4" }],
+    slug: "dummy-laptop-4",
+    thirdPartyReviews: ["https://youtube.com/dummyreview4"]
+  }
+];
 
 const LatestLaptops = () => {
   const [laptops, setLaptops] = useState([]);
-  const [current, setCurrent] = useState(1); // Start at 1 for infinite loop
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const intervalRef = useRef();
-  const sliderRef = useRef();
 
-  // Fetch laptops
   useEffect(() => {
     const fetchLaptops = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/laptops/");
         setLaptops(res.data);
-        setCurrent(1); // Reset to 1 when data loads
       } catch (err) {
         setLaptops([]);
       }
@@ -23,190 +81,28 @@ const LatestLaptops = () => {
     fetchLaptops();
   }, []);
 
-  // Auto slide (only depend on laptops.length for stability)
-  useEffect(() => {
-    if (laptops.length > 0) {
-      startAutoSlide();
-      return () => stopAutoSlide();
-    }
-  }, [laptops.length]);
-
-  const startAutoSlide = () => {
-    stopAutoSlide();
-    intervalRef.current = setInterval(() => {
-      goToNext();
-    }, 6000);
-  };
-
-  const stopAutoSlide = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  // Infinite loop logic
-  const goToPrev = () => {
-    setIsTransitioning(true);
-    setCurrent((prev) => prev - 1);
-  };
-
-  const goToNext = () => {
-    setIsTransitioning(true);
-    setCurrent((prev) => prev + 1);
-  };
-
-  // Prepare slides with clones
-  const slides =
-    laptops.length > 0
-      ? [laptops[laptops.length - 1], ...laptops, laptops[0]]
-      : [];
-
-  // Handle transition end for infinite effect
-  const handleTransitionEnd = () => {
-    if (current === 0) {
-      setIsTransitioning(false);
-      setCurrent(laptops.length);
-    } else if (current === slides.length - 1) {
-      setIsTransitioning(false);
-      setCurrent(1);
-    }
-  };
-
-  if (laptops.length === 0) {
-    return (
-      <section className="bg-gray-800 py-5 relative w-full">
-        <div className="container mx-auto px-0 sm:px-12"> 
-          <h2 className="text-3xl text-white">Latest Laptops</h2>
-          <div className="text-white text-center py-10">Loading...</div>
-        </div>
-      </section>
-    );
-  }
+  // Use dummy cards if no laptops loaded
+  const displayLaptops =
+    laptops.length > 0 ? laptops.slice(0, 4) : dummyLaptops;
 
   return (
-    <section className="bg-gray-800 py-5 relative w-full text-left">
+    <section className="py-5 relative w-full text-left">
       <div className="container px-10">
         <div className="flex justify-between items-center mb-12 px-0">
-          <h2 className="text-3xl text-white">Latest Laptops</h2>
+          <h2 className="text-3xl">Latest Laptops</h2>
         </div>
-        <div className="relative flex items-center w-full">
-          <button
-            onClick={goToPrev}
-            className="absolute left-0 top-1/2 z-10 bg-gray-700 hover:bg-gray-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg -translate-y-1/2"
-            aria-label="Previous"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {displayLaptops.map((laptop, idx) => (
+            <LaptopCard key={laptop._id || idx} laptop={laptop} />
+          ))}
+        </div>
+        <div className="mt-8 text-left">
+          <Link
+            to="/laptops"
+            className="text-lg font-semibold text-blue-600 hover:underline"
           >
-            &#8592;
-          </button>
-          <div
-            className="overflow-hidden w-full"
-            onMouseEnter={stopAutoSlide}
-            onMouseLeave={startAutoSlide}
-          >
-            <div
-              ref={sliderRef}
-              className="flex w-full"
-              style={{
-                width: `${slides.length * 100}%`,
-                transform: `translateX(-${current * (100 / slides.length)}%)`,
-                transition: isTransitioning
-                  ? "transform 1s ease-in-out"
-                  : "none",
-              }}
-              onTransitionEnd={handleTransitionEnd}
-            >
-              {slides.map((laptop, idx) => (
-                <div
-                  key={`${laptop._id || "slide"}-${idx}`}
-                  className="flex-shrink-0 w-full flex items-start"
-                  style={{ width: `${100 / slides.length}%` }}
-                >
-                  <div className="bg-gray-700 rounded-none shadow-md w-full mx-0 overflow-hidden border border-white p-4 flex flex-col max-w-full transition-all duration-500 text-left">
-                    <div className="flex flex-col items-start mb-4">
-                      <img
-                        src={
-                          laptop.images && laptop.images.length > 0
-                            ? `http://localhost:5000${laptop.images[0].url}`
-                            : "/default-laptop.png"
-                        }
-                        alt={
-                          laptop.images && laptop.images.length > 0
-                            ? laptop.images[0].alt
-                            : laptop.fullName
-                        }
-                        className="object-cover h-24 w-24 mb-2"
-                      />
-                      <h3 className="text-2xl text-white font-bold">
-                        <Link
-                          to={`/laptops/${laptop.slug}`}
-                          className="hover:underline"
-                        >
-                          {laptop.fullName}
-                        </Link>
-                      </h3>
-                      <div className="text-white">
-                        {laptop.manufacturerName}
-                      </div>
-                    </div>
-                    <div className="text-white mb-2">
-                      <span className="font-semibold">Rating:</span>{" "}
-                      {typeof laptop.popularity === "number"
-                        ? (laptop.popularity / 10).toFixed(1)
-                        : "N/A"}
-                      /10
-                    </div>
-                    <div className="text-white mb-2">
-                      <span className="font-semibold">Launch Year:</span>{" "}
-                      {laptop.releaseDate
-                        ? new Date(laptop.releaseDate).getFullYear()
-                        : "N/A"}
-                    </div>
-                    <div className="text-white mb-2">
-                      <span className="font-semibold">Processor:</span>{" "}
-                      {laptop.processor &&
-                      typeof laptop.processor === "object" &&
-                      laptop.processor.model
-                        ? laptop.processor.model
-                        : typeof laptop.processor === "string"
-                        ? laptop.processor
-                        : "N/A"}
-                    </div>
-                    <div className="text-white mb-2">
-                      <span className="font-semibold">RAM:</span>{" "}
-                      {laptop.memory?.size && laptop.memory?.type
-                        ? `${laptop.memory.size}GB ${laptop.memory.type}`
-                        : "N/A"}
-                    </div>
-                    <div className="text-white mb-2">
-                      <span className="font-semibold">Storage:</span>{" "}
-                      {Array.isArray(laptop.storage) &&
-                      laptop.storage.length > 0
-                        ? laptop.storage
-                            .map((s) => `${s.capacity}GB ${s.type}`)
-                            .join(", ")
-                        : laptop.keyFeatures?.find(
-                            (f) =>
-                              typeof f === "string" &&
-                              f.toLowerCase().includes("ssd")
-                          ) || "N/A"}
-                    </div>
-                    <div className="mt-4">
-                      <Link
-                        to={`/laptops/${laptop.slug}`}
-                        className="bg-blue-500 text-white text-lg font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition-colors inline-block"
-                      >
-                        View Details
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <button
-            onClick={goToNext}
-            className="absolute right-0 top-1/2 z-10 bg-gray-700 hover:bg-gray-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg -translate-y-1/2"
-            aria-label="Next"
-          >
-            &#8594;
-          </button>
+            Show all laptops &rarr;
+          </Link>
         </div>
       </div>
     </section>
